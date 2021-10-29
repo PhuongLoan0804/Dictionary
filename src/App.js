@@ -3,6 +3,7 @@ import './App.css';
 import { useEffect,useState } from 'react';
 import { Container } from '@mui/material';
 import Header from './components/Header/Header';
+import Definitions from './components/Definitions/Definitions';
 
 function App() {
   const [word, setWord] = useState("");
@@ -27,13 +28,25 @@ function App() {
   },[ word, category ]);
   
   return (
+    
   <div className="App"
     style={{height:"100vh", backgroundColor:"#282c34", color:"white"}}
   >
-    <Container maxWidth="md"
+    <Container 
+      maxWidth="md"
       style={{display:"flex", flexDirection:"column", height:"100vh"}}
     >
-      <Header category={category} setCategory={setCategory} word={word} setWord={setWord}/>
+      {/* header */}
+      <Header 
+        category={category} 
+        setCategory={setCategory} 
+        word={word} 
+        setWord={setWord}
+      />
+      {/* content */}
+      {meanings && (
+        <Definitions category={category} meanings={meanings} word={word} />
+      )}
     </Container>
   </div>
   );
